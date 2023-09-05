@@ -1,7 +1,7 @@
 # script to autocomplete arguments' values for payload script 
-# to use, 
+# works only with zsh, to use:
 # 1) must have payload script in your path as `payload` like: cp payload.sh /usr/local/bin/payload 
-# 2) source _payload in your ~/.SHELLrc file (.zshrc, .bashrc ... etc), like: echo 'source /path/to/_payload' >> ~/.zshrc 
+# 2) source _payload in your ~/.zshrc, like: echo 'source /path/to/_payload' >> ~/.zshrc 
 # to check if it works type:`payload -t <TAB>`, you should have 4 suggestions types of the payload.
 
 function _payload()
