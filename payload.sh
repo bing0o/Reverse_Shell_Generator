@@ -1,7 +1,6 @@
 #!/bin/bash
 #set -x
 #
-# This tool Required for URL Encoding: https://github.com/ffuf/pencode
 #
 
 TYPE="bash"
@@ -77,7 +76,7 @@ Payload(){
 
 	[[ "$ENCODE" == False ]] && echo "$PAYLOAD" || {
 		[ "$ENCODE" == "base64" ] && echo "$PAYLOAD" | base64 -w 0
-		[ "$ENCODE" == "url" ] && echo "$PAYLOAD" | pencode urlencode
+		[ "$ENCODE" == "url" ] && python3 -c "import urllib.parse as enc; print(enc.quote_plus('$PAYLOAD'))"
 	}
 }
 
